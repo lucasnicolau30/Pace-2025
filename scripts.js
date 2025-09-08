@@ -109,7 +109,7 @@ function calcularIMC() {
     const [sis, dia] = pressao.split("/").map(Number);
 
     if (!isNaN(sis) && !isNaN(dia)){
-        if(sis < 90 && dia < 60){
+        if(sis <= 90 && dia <= 60){
             classPressao = "Hipotensão";
             corPressao = "#00FFFF"; 
         }
