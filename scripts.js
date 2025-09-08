@@ -1,18 +1,35 @@
 const pressaoInput = document.getElementById("pressao");
 
-pressaoInput.addEventListener("input", function() {
-    let valor = this.value.replace(/\D/g, ""); 
+pressaoInput.addEventListener("input", function () {
+    // pega só os números, máximo 6 dígitos (3 sistólica + 3 diastólica)
+    let digits = this.value.replace(/\D/g, "").slice(0, 6);
+    let formatted = "";
 
-    if (valor.length > 2) {
-        valor = valor.slice(0, 2) + "/" + valor.slice(2, 4); 
+    if (digits.length <= 2) {
+        // ainda digitando a sistólica (1 ou 2 dígitos)
+        formatted = digits;
+    } else if (digits.length === 3) {
+        // 3 dígitos — mantenho sem barra para não atrapalhar quem está digitando "120" antes de digitar a diastólica
+        formatted = digits;
+    } else if (digits.length === 4) {
+        // caso típico: 2 + 2 (ex: 9060 -> 90/60)
+        formatted = digits.slice(0, 2) + "/" + digits.slice(2);
+    } else if (digits.length === 5) {
+        // 5 dígitos: decidir entre 3+2 (120/80) ou 2+3 (raro)
+        // regra prática: se os 3 primeiros formam >=100, assume 3+2; caso contrário, 2+3
+        if (Number(digits.slice(0, 3)) >= 100) {
+            formatted = digits.slice(0, 3) + "/" + digits.slice(3);
+        } else {
+            formatted = digits.slice(0, 2) + "/" + digits.slice(2);
+        }
+    } else { // digits.length === 6
+        // 3 + 3
+        formatted = digits.slice(0, 3) + "/" + digits.slice(3);
     }
 
-    if (valor.length > 5) {
-        valor = valor.slice(0,5); 
-    }
-
-    this.value = valor;
+    this.value = formatted;
 });
+
 
 function calcularIMC() {
     const nome = document.getElementById("nome").value.trim();
@@ -64,7 +81,7 @@ function calcularIMC() {
 
     if(temperatura < 35.5){
         classTemp = "Hipotermia";
-        corTemp = "#c00000"; 
+        corTemp = "#00FFFF"; 
     } 
     else if(temperatura <= 36.9){
         classTemp = "Normal";
@@ -76,7 +93,7 @@ function calcularIMC() {
     } 
     else if(temperatura <= 38.9){
         classTemp = "Febre Moderada";
-        corTemp = "#fe5f2f"; 
+        corTemp = "#c00000"; 
     } 
     else if(temperatura <= 39.9){
         classTemp = "Febre Alta";
@@ -94,30 +111,30 @@ function calcularIMC() {
     if (!isNaN(sis) && !isNaN(dia)){
         if(sis < 90 && dia < 60){
             classPressao = "Hipotensão";
-            corPressao = "#c00000"; 
+            corPressao = "#00FFFF"; 
         }
         else if(sis < 120 && dia < 80){
             classPressao = "Ótima";
-            corPressao = "#00FFFF"; 
+            corPressao = "#0096FF"; 
         }
         else if((sis >= 120 && sis <= 129) || (dia >= 80 && dia <= 84)){
             classPressao = "Normal";
             corPressao = "#00ff80"; 
         } 
-        else if((sistolica >= 130 && sistolica <= 139) || (diastolica >= 85 && diastolica <= 89)){
+        else if((sis >= 130 && sis <= 139) || (dia >= 85 && dia <= 89)){
             classPressao = "Pré-hipertensão";
-            corPressao = "#fe5f2f"; 
+            corPressao = "#fe8330"; 
         } 
-        else if((sistolica >= 140 && sistolica <= 159) || (diastolica >= 90 && diastolica <= 99)){
-            classPressao = "Hipertensão estágio 1";
+        else if((sis >= 140 && sis <= 159) || (dia >= 90 && dia <= 99)){
+            classPressao = "Hipertensão estágio I";
             corPressao = "#c00000"; 
         }
-        else if((sistolica >= 160 && sistolica <= 179) || (diastolica >= 100 && diastolica <= 109)){
-            classPressao = "Hipertensão estágio 2";
+        else if((sis >= 160 && sis <= 179) || (dia >= 100 && dia <= 109)){
+            classPressao = "Hipertensão estágio II";
             corPressao = "#c00000"; 
         }
-        else if((sistolica >= 180 || diastolica >= 110)){
-            classPressao = "Hipertensão estágio 3";
+        else if((sis >= 180 || dia >= 110)){
+            classPressao = "Hipertensão estágio III";
             corPressao = "#c00000"; 
         }
     } 
