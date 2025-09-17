@@ -1,0 +1,29 @@
+{
+  "name": "pace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasnicolau30/prototipo1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasnicolau30/prototipo1/issues"
+  },
+  "homepage": "https://github.com/lucasnicolau30/prototipo1#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "googleapis": "^159.0.0",
+    "serve-favicon": "^2.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
