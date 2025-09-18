@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lucasnicolau30/prototipo1#readme",
   "dependencies": {
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "googleapis": "^159.0.0",
     "serve-favicon": "^2.5.1"
