@@ -54,16 +54,20 @@ app.post("/", async (req, res) => {
 
     const spreadsheetId = "1BxN1B1u2p5VvJyW_7hbgFafWddlRZk6sD55N8Y6n97M";
 
-    await googleSheets.spreadsheets.values.append({
+    // Append corrigido
+    const response = await googleSheets.spreadsheets.values.append({
       spreadsheetId,
-      range: "Pace-Dados!A:G",
+      range: "Pace-Dados", // Apenas o nome da aba
       valueInputOption: "USER_ENTERED",
+      insertDataOption: "INSERT_ROWS", // Garante que será adicionada uma nova linha
       resource: {
         values: [[nome, idade, sexo, peso, altura, pressao, temperatura]],
       },
     });
 
     console.log("✅ Dados enviados com sucesso para o Google Sheets!");
+    console.log("📊 Resposta da API:", response.data);
+
     res.send("✅ Dados enviados com sucesso para o Google Sheets!");
   } catch (error) {
     console.error("❌ Erro ao enviar para Google Sheets:", error);
