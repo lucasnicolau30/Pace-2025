@@ -21,35 +21,36 @@
 <div class="container">
     <h4>Cadastramento<br>Registro de Sinais Vitais</h4>
 
-    <form id="formulario">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome">
+    <form method="POST" action="/">
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" id="nome">
 
-        <label for="idade">Idade:</label>
-        <input type="number" name="idade" id="idade">
+    <label for="idade">Idade:</label>
+    <input type="number" name="idade" id="idade">
 
-        <label for="sexo">Sexo:</label>
-        <select name="sexo" id="sexo">
-            <option value="">Selecione</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-        </select>
+    <label for="sexo">Sexo:</label>
+    <select name="sexo" id="sexo">
+        <option value="">Selecione</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+    </select>
 
-        <label for="peso">Peso (kg):</label>
-        <input type="number" name="peso" id="peso" step="0.1">
+    <label for="peso">Peso (kg):</label>
+    <input type="number" name="peso" id="peso" step="0.1">
 
-        <label for="altura">Altura (cm):</label>
-        <input type="number" name="altura" id="altura">
+    <label for="altura">Altura (cm):</label>
+    <input type="number" name="altura" id="altura">
 
-        <label for="pressao">Pressão (mmHg):</label>
-        <input type="text" name="pressao" id="pressao" placeholder="ex: 120/80">
+    <label for="pressao">Pressão (mmHg):</label>
+    <input type="text" name="pressao" id="pressao" placeholder="ex: 120/80">
 
-        <label for="temperatura">Temperatura (°C):</label>
-        <input type="number" name="temperatura" id="temperatura" step="0.1">
+    <label for="temperatura">Temperatura (°C):</label>
+    <input type="number" name="temperatura" id="temperatura" step="0.1">
 
-        <button type="button" onclick="calcularIMC()">Calcular IMC</button>
-        <button type="submit">Enviar para Google Sheets</button>
-    </form>
+    <button type="button" onclick="calcularIMC()">Calcular IMC</button>
+    <button type="submit">Enviar para Google Sheets</button>
+
+</form>
 
     <p id="resultado"></p>
 </div>
