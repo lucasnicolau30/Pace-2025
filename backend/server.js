@@ -12,24 +12,25 @@ app.use(express.json());
 app.use(favicon(path.join(__dirname, "../public/img/favicon.ico")));
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Carregar credenciais do Google Sheets
-const credentialsPath = process.env.GOOGLE_CREDENTIALS_PATH || path.join(__dirname, "credentials.json");
+// Caminho para credenciais
+let credentialsPath;
 
+// Se estiver na Render, usar a variável de ambiente GOOGLE_CREDENTIALS_PATH
+if (process.env.GOOGLE_CREDENTIALS_PATH) {
+  credentialsPath = process.env.GOOGLE_CREDENTIALS_PATH;
+} else {
+  // Rodando local, usa o credentials.json dentro do backend
+  credentialsPath = path.join(__dirname, "credentials.json");
+}
+
+// Ler credenciais
 if (!fs.existsSync(credentialsPath)) {
   console.error(`❌ Arquivo de credenciais não encontrado: ${credentialsPath}`);
   process.exit(1);
 }
 
-const credentials = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
+const credentials = JSON.parse(fs.readFileSync(credentialsPath, "utf-8"));
 console.log("🟢 Credenciais carregadas para:", credentials.client_email);
-
-// Configurar Google Sheets
-const auth = new google.auth.GoogleAuth({
-  credentials,
-  scopes: "https://www.googleapis.com/auth/spreadsheets",
-});
-const googleSheets = google.sheets({ version: "v4", auth });
-const spreadsheetId = "1BxN1B1u2p5VvJyW_7hbgFafWddlRZk6sD55N8Y6n97M";
 
 // Rota principal
 app.get("/", (req, res) => {
@@ -42,6 +43,16 @@ app.post("/", async (req, res) => {
     console.log("📥 Recebido do formulário:", req.body);
 
     const { nome, idade, sexo, peso, altura, pressao, temperatura } = req.body;
+
+    const auth = new google.auth.GoogleAuth({
+      credentials,
+      scopes: "https://www.googleapis.com/auth/spreadsheets",
+    });
+
+    const client = await auth.getClient();
+    const googleSheets = google.sheets({ version: "v4", auth: client });
+
+    const spreadsheetId = "1BxN1B1u2p5VvJyW_7hbgFafWddlRZk6sD55N8Y6n97M";
 
     await googleSheets.spreadsheets.values.append({
       spreadsheetId,
@@ -60,6 +71,6 @@ app.post("/", async (req, res) => {
   }
 });
 
-// Porta do servidor (Vercel/Render define process.env.PORT)
+// Porta do servidor (Render define process.env.PORT)
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
