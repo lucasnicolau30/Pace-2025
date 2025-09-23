@@ -22,35 +22,50 @@
     <h4>Cadastramento<br>Registro de Sinais Vitais</h4>
 
     <form method="POST" action="/">
-    <label for="nome">Nome:</label>
-    <input type="text" name="nome" id="nome">
+        <!-- Dados do paciente -->
+        <fieldset>
+            <legend>Dados do Paciente</legend>
 
-    <label for="idade">Idade:</label>
-    <input type="number" name="idade" id="idade">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required>
 
-    <label for="sexo">Sexo:</label>
-    <select name="sexo" id="sexo">
-        <option value="">Selecione</option>
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-    </select>
+            <label for="idade">Idade:</label>
+            <input type="number" name="idade" id="idade" required>
 
-    <label for="peso">Peso (kg):</label>
-    <input type="number" name="peso" id="peso" step="0.1">
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" id="sexo" required>
+                <option value="">Selecione</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+            </select>
 
-    <label for="altura">Altura (cm):</label>
-    <input type="number" name="altura" id="altura">
+            <label for="peso">Peso (kg):</label>
+            <input type="number" name="peso" id="peso" step="0.1" required>
 
-    <label for="pressao">Pressão (mmHg):</label>
-    <input type="text" name="pressao" id="pressao" placeholder="ex: 120/80">
+            <label for="altura">Altura (cm):</label>
+            <input type="number" name="altura" id="altura" required>
 
-    <label for="temperatura">Temperatura (°C):</label>
-    <input type="number" name="temperatura" id="temperatura" step="0.1">
+            <label for="pressao">Pressão (mmHg):</label>
+            <input type="text" name="pressao" id="pressao" inputmode="numeric" placeholder="ex: 120/80" required>
 
-    <button type="button" onclick="calcularIMC()">Calcular IMC</button>
-    <button type="submit">Enviar para Google Sheets</button>
+            <label for="temperatura">Temperatura (°C):</label>
+            <input type="number" name="temperatura" id="temperatura" step="0.1" required>
+        </fieldset>
 
-</form>
+        <!-- Dados do atendimento -->
+        <fieldset>
+            <legend>Dados do Atendimento</legend>
+
+            <label for="atendente">Nome do Atendente:</label>
+            <input type="text" name="atendente" id="atendente" required>
+
+            <label for="data_atendimento">Data do Atendimento:</label>
+            <input type="date" name="data_atendimento" id="data_atendimento" required>
+        </fieldset>
+
+        <button type="button" onclick="calcularDados()">Gerar tabela do paciente</button>
+        <button type="submit">Enviar para Google Sheets</button>
+    </form>
 
     <p id="resultado"></p>
 </div>
