@@ -43,7 +43,7 @@
             <input type="number" name="peso" id="peso" step="0.1" required>
 
             <label for="altura">Altura (cm):</label>
-            <input type="number" name="altura" id="altura" required>
+            <input type="number" name="altura" id="altura" placeholder="ex: 170" required>
 
             <label for="pressao">Pressão (mmHg):</label>
             <input type="text" name="pressao" id="pressao" inputmode="numeric" placeholder="ex: 120/80" required>
@@ -60,11 +60,11 @@
             <input type="text" name="atendente" id="atendente" required>
 
             <label for="data_atendimento">Data do Atendimento:</label>
-            <input type="date" name="data_atendimento" id="data_atendimento" required>
+            <input type="date" name="data_atendimento" id="data_atendimento"  required>
         </fieldset>
 
-        <button type="button" onclick="calcularDados()">Gerar tabela do paciente</button>
-        <button type="submit">Enviar para Google Sheets</button>
+        <button id="botao-verde" type="button" onclick="calcularDados()">Gerar tabela do paciente</button>
+        <button id="botao-azul" type="submit">Enviar para Google Sheets</button>
     </form>
 
     <p id="resultado"></p>

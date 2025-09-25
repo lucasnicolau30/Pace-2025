@@ -62,12 +62,11 @@ h3 {
   color: #444;
 }
 
-/* ==== Fieldset e Legend ==== */
 fieldset {
   border: none;
   margin: 20px 0;
   padding-top: 12px;
-  border-top: 1px solid #eee; /* linha em todos */
+  border-top: 1px solid #eee; 
 }
 
 legend {
@@ -78,7 +77,6 @@ legend {
   text-align: center;
   padding: 0 4px;
 }
-/* =========================== */
 
 label {
   display: block;
@@ -96,7 +94,7 @@ input, select {
   font-size: 15px;
 }
 
-button {
+#botao-verde{
   width: 100%;
   margin-top: 16px;
   padding: 12px;
@@ -108,8 +106,24 @@ button {
   font-size: 16px;
 }
 
-button:hover {
+#botao-azul{
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #03c4ff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#botao-verde:hover {
   background-color: #006100;
+}
+
+#botao-azul:hover {
+  background-color: #00008B; 
 }
 
 #resultado {
