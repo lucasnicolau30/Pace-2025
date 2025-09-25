@@ -63,54 +63,54 @@ function calcularDados() {
     let corIMC = "";
     if (imc < 18.5){ 
         classificacao = "Abaixo do peso"; 
-        corIMC = "#00FFFF"; 
+        corIMC = "#03c4ff"; 
     }
     else if(imc < 25){ 
         classificacao = "Eutrófico"; 
-        corIMC = "#00ff80"; 
+        corIMC = "#32a848"; 
     }
     else if(imc < 30){ 
         classificacao = "Sobrepeso"; 
-        corIMC = "#fe8330";
+        corIMC = "#f5931b";
     }
     else if(imc < 35){ 
         classificacao = "Obesidade grau I"; 
-        corIMC = "#c00000";
+        corIMC = "#ff2003";
     }
     else if(imc < 40){ 
         classificacao = "Obesidade grau II"; 
-        corIMC = "#c00000";
+        corIMC = "#ff2003";
     }
     else{ 
         classificacao = "Obesidade grau III"; 
-        corIMC = "#c00000"; 
+        corIMC = "#ff2003"; 
     }
 
     let classTemp = "";
     let corTemp = "";
     if(temperatura < 35.5){ 
         classTemp = "Hipotermia"; 
-        corTemp = "#00FFFF"; 
+        corTemp = "#03c4ff"; 
     }
     else if(temperatura <= 36.9){ 
         classTemp = "Normal"; 
-        corTemp = "#00ff80"; 
+        corTemp = "#32a848"; 
     }
     else if(temperatura <= 37.7){ 
         classTemp = "Estado febril"; 
-        corTemp = "#fe8330"; 
+        corTemp = "#f5931b"; 
     }
     else if(temperatura <= 38.9){ 
         classTemp = "Febre Moderada"; 
-        corTemp = "#c00000"; 
+        corTemp = "#ff2003"; 
     }
     else if(temperatura <= 39.9){ 
         classTemp = "Febre Alta"; 
-        corTemp = "#c00000"; 
+        corTemp = "#ff2003"; 
     }
     else{
         classTemp = "Febre Muito Alta"; 
-        corTemp = "#c00000"; 
+        corTemp = "#ff2003"; 
     }
 
     let classPressao = "";
@@ -120,28 +120,28 @@ function calcularDados() {
     if(!isNaN(sis) && !isNaN(dia)){
         if (sis < 120){ 
             classPressao = "Normal"; 
-            corPressao = "#0096FF"; 
+            corPressao = "#32a848"; 
         }
         else if(sis >= 120 && sis <= 139){ 
             classPressao = "Pré-hipertensão"; 
-            corPressao = "#fe8330"; 
+            corPressao = "#f5931b"; 
         }
         else if(sis >= 140 && sis <= 159){ 
             classPressao = "Hipertensão estágio I"; 
-            corPressao = "#c00000"; 
+            corPressao = "#ff2003"; 
         }
         else if(sis >= 160 && sis <= 179){ 
             classPressao = "Hipertensão estágio II"; 
-            corPressao = "#c00000"; 
+            corPressao = "#ff2003"; 
         }
         else if(sis >= 180){ 
             classPressao = "Hipertensão estágio III"; 
-            corPressao = "#c00000"; 
+            corPressao = "#ff2003"; 
         }
     } 
     else{
         classPressao = "Valor inválido";
-        corPressao = "#dc3545";
+        corPressao = "#ff2003";
     }
 
 document.getElementById("resultado").innerHTML = `
